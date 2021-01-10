@@ -25,7 +25,7 @@ ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
 apt-get install -y tzdata && \
 # hexo初始化
 # npm config set registry https://registry.npm.taobao.org && \
-npm config set registry https://mirrors.huaweicloud.com/repository/npm/ && \
+# npm config set registry https://mirrors.huaweicloud.com/repository/npm/ && \
 npm install -g hexo-cli && \
 hexo init && \
 npm install  && \
