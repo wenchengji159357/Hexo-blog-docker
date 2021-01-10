@@ -6,6 +6,10 @@ MAINTAINER jiwencheng <wenchengji159357@gmail.com>
 ARG Github_User
 ARG Github_Email
 
+ENV Hexo_Server_Port=4000
+
+EXPOSE ${Hexo_Server_Port}
+
 WORKDIR /${Github_User}.github.io
 
 COPY ./build_hexo_blog.yml /root/build_hexo_blog.yml
@@ -35,6 +39,10 @@ npm install hexo-wordcount --save && \
 npm install hexo-generator-sitemap --save && \
 npm install hexo-generator-baidu-sitemap --save && \
 npm install hexo-helper-live2d --save && \
+# 创建SSH公私钥
+rm -rf ~/.ssh/* && \
+ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P "" -C ${Github_Email} && \
+ssh-keyscan github.com > ~/.ssh/known_hosts 2 > /dev/null && \
 # git基本配置
 git config --global user.email ${Github_Email} && \
 git config --global user.name ${Github_User} && \
@@ -45,10 +53,6 @@ git remote add origin git@github.com:${Github_User}/${Github_User}.github.io.git
 sed -ri "/type/ s#^(.*)(: )(.*)#\1\2git#" _config.yml && \
 echo "  repo: git@github.com:${Github_User}/${Github_User}.github.io.git" >> _config.yml && \
 echo "  branch: master" >> _config.yml && \
-# 创建SSH公私钥
-rm -rf ~/.ssh/* && \
-ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P "" -C ${Github_Email} && \
-ssh-keyscan github.com > ~/.ssh/known_hosts 2 > /dev/null && \
 # 修改Hexo主题
 git submodule add https://github.com/fluid-dev/hexo-theme-fluid themes/fluid && \
 sed -ri "/theme/ s#^(.*)(: )(.*)#\1\2fluid#" _config.yml && \
