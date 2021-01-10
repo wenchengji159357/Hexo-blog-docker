@@ -17,28 +17,27 @@ COPY ./sources.list /root/sources.list
 
 RUN \
 # 更换源
-# mv /etc/apt/sources.list /etc/apt/sources.list.bak && \
-# cp /root/sources.list /etc/apt/sources.list && \
-# apt-get update && \
+mv /etc/apt/sources.list /etc/apt/sources.list.bak && \
+cp /root/sources.list /etc/apt/sources.list && \
+apt-get update && \
 # 设置时区
-# ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
-# apt-get install -y tzdata && \
+ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+apt-get install -y tzdata && \
 # hexo初始化
 # npm config set registry https://registry.npm.taobao.org && \
-# npm config set registry https://mirrors.huaweicloud.com/repository/npm/ && \
-# npm install -g hexo-cli && \
-# hexo init && \
-# npm install  && \
-# npm install hexo-server --save && \
+npm config set registry https://mirrors.huaweicloud.com/repository/npm/ && \
+npm install -g hexo-cli && \
+hexo init && \
+npm install  && \
+npm install hexo-server --save && \
 # 一键部署到Github Pages
-# npm install hexo-deployer-git --save && \
-# npm audit fix && \
-# npm install hexo-migrator-rss --save && \
-# npm install hexo-asset-image --save && \
-# npm install hexo-wordcount --save && \
-# npm install hexo-generator-sitemap --save && \
-# npm install hexo-generator-baidu-sitemap --save && \
-# npm install hexo-helper-live2d --save && \
+npm install hexo-deployer-git --save && \
+npm install hexo-migrator-rss --save && \
+npm install hexo-asset-image --save && \
+npm install hexo-wordcount --save && \
+npm install hexo-generator-sitemap --save && \
+npm install hexo-generator-baidu-sitemap --save && \
+npm install hexo-helper-live2d --save && \
 # 创建SSH公私钥
 rm -rf ~/.ssh/* && \
 ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P "" -C ${Github_Email} && \
