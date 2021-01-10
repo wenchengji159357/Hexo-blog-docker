@@ -2,8 +2,8 @@ name: Docker
 on:
   push:
     # 每次 push tag 时进行构建，不需要每次 push 都构建。使用通配符匹配每次 tag 的提交，记得 tag 名一定要以 v 开头
-    # tags:
-    #  - v*
+    tags:
+      - v*
 env:
   # 设置 docker 镜像名
   Image_Name: hexo-blog-image
@@ -16,7 +16,7 @@ jobs:
         # 构建镜像，指定镜像名
       - name: Build image
         run: docker build . --file Dockerfile --build-arg Github_User="wenchengji159357" --build-arg Github_Email="wenchengji159357@gmail.com" --tag ${Image_Name}
-        # 登录到 dockerhub，使用 GitHub secrets 传入账号密码，密码被加密存储在 GitHub 服务器，添加方法见下图。
+        # 登录到 dockerhub
       - name: Log into registry
         run: echo "${{ secrets.Docker_Access_Token }}" | docker login -u ${Docker_User} --password-stdin
 
@@ -37,8 +37,6 @@ jobs:
           # Use Docker `latest` tag convention
           [ "$Version" == "master" ] && Version=latest
 
-          echo Image_Id=$Image_Id
-          echo Version=$Version
           # 设置镜像 id 和版本号
           docker tag $Image_Name $Image_Id:$Version
           # 进行 push
