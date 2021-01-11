@@ -5,6 +5,7 @@ MAINTAINER jiwencheng <wenchengji159357@gmail.com>
 
 ARG Github_User
 ARG Github_Email
+ARG Github_Branch_Name
 
 ENV Hexo_Server_Port=4000
 
@@ -51,7 +52,7 @@ git remote add origin git@github.com:${Github_User}/${Github_User}.github.io.git
 # 修改hexo-deployer-git插件配置
 sed -ri "/type/ s#^(.*)(: )(.*)#\1\2git#" _config.yml && \
 echo "  repo: git@github.com:${Github_User}/${Github_User}.github.io.git" >> _config.yml && \
-echo "  branch: master" >> _config.yml && \
+echo "  branch: ${Github_Branch_Name}" >> _config.yml && \
 # 修改Hexo主题
 git submodule add https://github.com/fluid-dev/hexo-theme-fluid themes/fluid && \
 sed -ri "/theme/ s#^(.*)(: )(.*)#\1\2fluid#" _config.yml && \
