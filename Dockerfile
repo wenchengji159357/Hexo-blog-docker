@@ -5,7 +5,7 @@ MAINTAINER jiwencheng <wenchengji159357@gmail.com>
 
 ARG Github_User
 ARG Github_Email
-ARG Github_Branch_Name
+ARG Github_Branch_Name=master
 
 ENV Hexo_Server_Port=4000
 
@@ -24,6 +24,7 @@ apt-get update && \
 # 设置时区
 ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
 apt-get install -y tzdata && \
+apt-get install -y vim && \
 # hexo初始化
 # npm config set registry https://registry.npm.taobao.org && \
 # npm config set registry https://mirrors.huaweicloud.com/repository/npm/ && \
@@ -49,6 +50,12 @@ ssh-keyscan github.com > ~/.ssh/known_hosts 2 > /dev/null && \
 git config --global user.email ${Github_Email} && \
 git config --global user.name ${Github_User} && \
 #git config --global push.default matching && \
+# git log中文显示
+git config --global i18n.commitencoding utf-8 && \
+git config --global i18n.logoutputencoding utf-8 && \
+export LESSCHARSET=utf-8 && \
+# git 代码编辑器 vim
+git config --global core.editor vim && \
 git init && \
 git remote add origin git@github.com:${Github_User}/${Github_User}.github.io.git && \
 # 修改hexo-deployer-git插件配置
