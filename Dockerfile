@@ -34,7 +34,7 @@ npm install  && \
 npm install hexo-server --save && \
 # 一键部署到Github Pages
 npm install hexo-deployer-git --save && \
-#安装fluid主题
+# 安装fluid主题
 npm install hexo-theme-fluid --save && \
 npm install hexo-migrator-rss --save && \
 npm install hexo-asset-image --save && \
@@ -49,7 +49,7 @@ ssh-keyscan github.com > ~/.ssh/known_hosts 2 > /dev/null && \
 # git基本配置
 git config --global user.email ${Github_Email} && \
 git config --global user.name ${Github_User} && \
-#git config --global push.default matching && \
+# git config --global push.default matching && \
 # git log中文显示
 git config --global i18n.commitencoding utf-8 && \
 git config --global i18n.logoutputencoding utf-8 && \
