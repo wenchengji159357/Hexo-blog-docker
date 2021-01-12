@@ -33,6 +33,8 @@ npm install  && \
 npm install hexo-server --save && \
 # 一键部署到Github Pages
 npm install hexo-deployer-git --save && \
+#安装fluid主题
+npm install hexo-theme-fluid --save && \
 npm install hexo-migrator-rss --save && \
 npm install hexo-asset-image --save && \
 npm install hexo-wordcount --save && \
@@ -54,7 +56,6 @@ sed -ri "/type/ s#^(.*)(: )(.*)#\1\2git#" _config.yml && \
 echo "  repo: git@github.com:${Github_User}/${Github_User}.github.io.git" >> _config.yml && \
 echo "  branch: ${Github_Branch_Name}" >> _config.yml && \
 # 修改Hexo主题
-git submodule add https://github.com/fluid-dev/hexo-theme-fluid themes/fluid && \
 sed -ri "/theme/ s#^(.*)(: )(.*)#\1\2fluid#" _config.yml && \
 # 修改Hexo语言
 sed -ri "/language/ s#^(.*)(: )(.*)#\1\2zh-CN#" _config.yml && \
