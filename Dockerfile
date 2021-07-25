@@ -68,7 +68,7 @@ sed -ri "/theme/ s#^(.*)(: )(.*)#\1\2fluid#" _config.yml && \
 sed -ri "/language/ s#^(.*)(: )(.*)#\1\2zh-CN#" _config.yml && \
 # 修改Hexo作者
 sed -ri "/author/ s#^(.*)(: )(.*)#\1\2${Github_User}#" _config.yml && \
-mkdir .github && \
+# mkdir .github && \
 mkdir .github/workflows/ && \
 mv /root/build_hexo_blog.yml .github/workflows/build_hexo_blog.yml && \
 sed -ri "/GIT_NAME/ s#^(.*)(: )(.*)#\1\2${Github_User}#" .github/workflows/build_hexo_blog.yml && \
