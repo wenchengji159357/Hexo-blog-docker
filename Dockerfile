@@ -42,6 +42,8 @@ npm install hexo-wordcount --save && \
 npm install hexo-generator-sitemap --save && \
 npm install hexo-generator-baidu-sitemap --save && \
 npm install hexo-helper-live2d --save && \
+# 升级 node 到最新稳定版本
+n stable && \
 # 创建SSH公私钥
 rm -rf ~/.ssh/* && \
 ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P "" -C ${Github_Email} && \
